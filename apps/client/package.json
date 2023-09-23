@@ -15,8 +15,6 @@
     "@types/react": "18.2.21",
     "@types/react-dom": "18.2.7",
     "autoprefixer": "10.4.15",
-    "eslint-config-next": "13.4.19",
-    "eslint-config-prettier": "^9.0.0",
     "next": "13.4.19",
     "postcss": "8.4.29",
     "prettier": "^3.0.3",
@@ -28,6 +26,8 @@
     "@typescript-eslint/eslint-plugin": "^6.7.2",
     "@typescript-eslint/parser": "^6.7.2",
     "eslint": "^8.50.0",
+    "eslint-config-next": "^13.5.2",
+    "eslint-config-prettier": "^9.0.0",
     "typescript": "^5.2.2"
   }
 }
