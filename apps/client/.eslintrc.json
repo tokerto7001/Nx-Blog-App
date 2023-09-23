@@ -1,3 +1,23 @@
 {
-  "extends": "next/core-web-vitals"
+  "plugins": ["@typescript-eslint"],
+  "extends": [
+    "next/core-web-vitals",
+    "plugin:@typescript-eslint/recommended",
+    "prettier"
+  ],
+  "rules": {
+    // I suggest you add those two rules:
+    "react/prop-types": "off",
+    "react/react-in-jsx-scope": "off",
+    "@typescript-eslint/no-unused-vars": "error",
+    "@typescript-eslint/no-explicit-any": "error",
+    "capitalized-comments": [
+      "error",
+      "always",
+      {
+        "ignorePattern": "pragma|ignored",
+        "ignoreInlineComments": true
+      }
+    ]
+  }
 }
