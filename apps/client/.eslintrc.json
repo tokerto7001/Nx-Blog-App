@@ -13,13 +13,6 @@
     "@next/next/no-page-custom-font": "off",
     "@typescript-eslint/no-unused-vars": "error",
     "@typescript-eslint/no-explicit-any": "error",
-    "capitalized-comments": [
-      "error",
-      "always",
-      {
-        "ignorePattern": "pragma|ignored",
-        "ignoreInlineComments": true
-      }
-    ]
+    "@typescript-eslint/no-namespace": "off"
   }
 }
