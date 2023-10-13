@@ -7,9 +7,9 @@
     "prepare": "husky install",
     "build": "npx nx build server & npx nx build client",
     "format": "npx nx format server & npx nx format client",
-    "lint": "npx nx affected -t lint server & npx nx affected -t lint client",
-    "test": "npx nx affected -t test server & npx nx affected -t component:headless client",
-    "typecheck": "npx nx affected:typecheck server & npx nx affected:typecheck client"
+    "lint": "npx nx lint server & npx nx lint client",
+    "test": "npx nx test server & npx nx component:headless client",
+    "typecheck": "npx nx typecheck server & npx nx typecheck client"
   },
   "private": true,
   "devDependencies": {
