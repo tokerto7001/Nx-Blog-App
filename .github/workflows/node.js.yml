@@ -17,10 +17,14 @@ jobs:
       with:
         node-version: "18.x"
         cache: 'npm'
-    - uses: nrwl/nx-set-shas@v3
-    - run: npm install nx
-    - run: npm install
-    - run: npm run typecheck
-    - run: npm run lint
-    - run: npm run test
-    - run: npm run build --if-present
+    - name: Install Dependencies
+      run: npm install nx
+      run: npm install
+    - name: Check Types
+      run: npm run typecheck
+    - name: Run Linting Rules
+      run: npm run lint
+    - name: Run Tests
+      run: npm run test
+    - name: Build
+      run: npm run build
