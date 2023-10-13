@@ -9,7 +9,7 @@
     "format": "npx nx format server & npx nx format client",
     "lint": "npx nx affected -t lint server & npx nx affected -t lint client",
     "test": "npx nx affected -t test server & npx nx affected -t component:headless client",
-    "typecheck": "npx nx affected --base= origin/development --head= origin/development typecheck server & npx nx affected --base= origin/development --head= origin/development typecheck typecheck client"
+    "typecheck": "npx nx affected:typecheck server & npx nx affected:typecheck client"
   },
   "private": true,
   "devDependencies": {
