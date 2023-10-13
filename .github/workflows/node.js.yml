@@ -10,9 +10,8 @@ on:
 
 jobs:
   type-check-lint-test-build:
-    name: build
+    name: type-check-lint-test-build
     runs-on: ubuntu-latest
-    needs: [typecheck, lint, test]
 
     steps:
     - uses: actions/checkout@v3
