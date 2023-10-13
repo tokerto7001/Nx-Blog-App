@@ -20,6 +20,7 @@ jobs:
       with:
         node-version: "18.x"
         cache: 'npm'
+      uses: nrwl/nx-set-shas@v3
     - run: npm install nx
     - run: npm install
     - run: npm run affected -t typecheck
