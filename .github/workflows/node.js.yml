@@ -17,8 +17,9 @@ jobs:
       with:
         node-version: "18.x"
         cache: 'npm'
-    - name: Install Dependencies
+    - name: Install Nx
       run: npm install nx
+    - name: Install Dependencies
       run: npm install
     - name: Check Types
       run: npm run typecheck
