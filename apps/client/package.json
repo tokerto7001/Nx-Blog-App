@@ -10,7 +10,8 @@
     "format": "prettier --check --ignore-path .gitignore .",
     "format:fix": "prettier --write --ignore-path .gitignore .",
     "component": "cypress open --component",
-    "component:headless": "cypress run --component"
+    "component:headless": "cypress run --component",
+    "typecheck": "tsc --noEmit --esModuleInterop --jsx preserve"
   },
   "dependencies": {
     "@types/node": "20.6.2",
