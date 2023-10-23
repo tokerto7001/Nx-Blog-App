@@ -1,7 +1,7 @@
 import dotenv from 'dotenv';
-import { determineEvPath, TNodeEnv } from './utilities/determineEnvPath';
+import { determineEnvPath, TNodeEnv } from './utilities/determineEnvPath';
 
-dotenv.config({ path: determineEvPath(process.env.NODE_ENV as TNodeEnv) });
+dotenv.config({ path: determineEnvPath(process.env.NODE_ENV as TNodeEnv) });
 
 import { connectToPostgres } from './clients/postgres';
 connectToPostgres();

@@ -11,7 +11,13 @@
         "format": "prettier --write .",
         "lint": "eslint .",
         "lint:fix": "eslint . --fix",
-        "typecheck": "tsc --noEmit --esModuleInterop"
+        "typecheck": "tsc --noEmit --esModuleInterop",
+        "migration:generate-dev": "cross-env NODE_ENV=development drizzle-kit generate:pg",
+        "migration:push-dev": "cross-env NODE_ENV=development drizzle-kit push:pg",
+        "migration:generate-production": "cross-env NODE_ENV=production drizzle-kit generate:pg",
+        "migration:push-production": "cross-env NODE_ENV=production drizzle-kit push:pg",
+        "migration:generate-test": "cross-env NODE_ENV=test drizzle-kit generate:pg",
+        "migration:push-test": "cross-env NODE_ENV=test drizzle-kit push:pg"
     },
     "keywords": [],
     "author": "",

@@ -39,3 +39,4 @@ testem.log
 Thumbs.db
 
 /apps/server/.env*
+/apps/server/drizzle

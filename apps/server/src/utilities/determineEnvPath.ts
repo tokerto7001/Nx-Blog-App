@@ -1,6 +1,6 @@
 export type TNodeEnv = 'development' | 'production' | 'test';
 
-export const determineEvPath = (nodeEnv: TNodeEnv) => {
+export const determineEnvPath = (nodeEnv: TNodeEnv) => {
     const pathsToReturn = {
         development: '.env.development',
         production: '.env.production',
