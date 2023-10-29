@@ -8,6 +8,7 @@ declare global {
             DB_USER: string;
             DB_PASSWORD: string;
             DB_NAME: string;
+            HASH_SALT_ROUNDS: number;
         }
     }
 }

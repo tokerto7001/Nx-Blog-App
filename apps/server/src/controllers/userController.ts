@@ -5,15 +5,13 @@ const userService = new UserService();
 
 export const register: RequestHandler = async (req, res) => {
     try {
-        const data = userService.register();
-        return res
-            .status(200)
-            .send({
-                status: 'success',
-                data,
-                message: 'User registration is completed successfully.',
-            });
-    } catch (err) {
-        console.log(err);
+        const data = await userService.register(req.body);
+        return res.status(201).send({
+            status: 'success',
+            data,
+            message: 'User registration is completed successfully.',
+        });
+    } catch (err: any) {
+        return res.status(400).send({ status: 'fail', message: err.message });
     }
 };

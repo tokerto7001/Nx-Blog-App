@@ -40,6 +40,8 @@
         "typescript": "^5.2.2"
     },
     "dependencies": {
+        "@types/bcrypt": "^5.0.1",
+        "bcrypt": "^5.1.1",
         "cross-env": "^7.0.3",
         "dotenv": "^16.3.1",
         "drizzle-orm": "^0.28.6",

@@ -7,7 +7,7 @@ import {
     varchar,
 } from 'drizzle-orm/pg-core';
 
-export const users = pgTable('users', {
+export const Users = pgTable('users', {
     id: serial('id').primaryKey().notNull(),
     fullName: varchar('full_name', { length: 60 }).notNull(),
     email: text('email').unique().notNull(),
@@ -19,5 +19,5 @@ export const users = pgTable('users', {
     createdAt: timestamp('created_at', { withTimezone: true }).defaultNow(),
 });
 
-export type User = typeof users.$inferSelect; // return type when queried
-export type NewUser = typeof users.$inferInsert; // insert type
+export type User = typeof Users.$inferSelect; // return type when queried
+export type NewUser = typeof Users.$inferInsert; // insert type
