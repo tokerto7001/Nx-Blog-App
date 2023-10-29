@@ -9,6 +9,8 @@ declare global {
             DB_PASSWORD: string;
             DB_NAME: string;
             HASH_SALT_ROUNDS: number;
+            SENDGRID_API_KEY: string;
+            SENDGRID_MAIL: string;
         }
     }
 }

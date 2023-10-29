@@ -2,6 +2,7 @@ import { eq } from 'drizzle-orm';
 import { db } from '../clients/postgres';
 import { Users } from '../db/schema';
 import bcrypt from 'bcrypt';
+import { EmailService } from '../utilities/sendEmail';
 
 interface TUserRegisterBody {
     fullName: string;
@@ -35,6 +36,9 @@ export class UserService {
             email: email,
             password: hashedPassword,
         });
+
+        const emailService = new EmailService(fullName, email);
+        await emailService.sendRegisterEmail('members.rexven.com');
     }
 
     private hashUserPassword = (password: string): string => {
