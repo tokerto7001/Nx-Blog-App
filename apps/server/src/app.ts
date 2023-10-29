@@ -1,4 +1,5 @@
 import express, { Request, Response } from 'express';
+import { userRoutes } from './routes/userRoutes';
 
 export const app = express();
 
@@ -12,3 +13,5 @@ app.post('/', (req: Request, res: Response) => {
         res.status(200).send('ok');
     }
 });
+
+app.use('/api/users', userRoutes);

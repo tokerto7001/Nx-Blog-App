@@ -10,7 +10,6 @@ export default {
     out: 'drizzle',
     driver: 'pg',
     dbCredentials: {
-        // connectionString: `postgresql://postgres:    @localhost:5432/test`,
         user: DB_USER,
         password: DB_PASSWORD,
         host: DB_HOST,
