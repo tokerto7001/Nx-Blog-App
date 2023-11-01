@@ -32,7 +32,7 @@ export class UserService {
 
         const hashedPassword = hashString(password);
 
-        const userId = await db
+        const user = await db
             .insert(Users)
             .values({
                 fullName: fullName,
@@ -42,7 +42,7 @@ export class UserService {
             .returning({ userId: Users.id });
 
         const encodedString = await generateEncodedString(
-            { userId },
+            user,
             JWT_AUTH_SECRET_KEY!,
             JWT_AUTH_EXPIRES_IN!,
         );
