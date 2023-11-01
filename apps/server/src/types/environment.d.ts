@@ -11,6 +11,9 @@ declare global {
             HASH_SALT_ROUNDS: number;
             SENDGRID_API_KEY: string;
             SENDGRID_MAIL: string;
+            JWT_AUTH_SECRET_KEY: string;
+            JWT_AUTH_EXPIRES_IN: string;
+            API_URL: string;
         }
     }
 }

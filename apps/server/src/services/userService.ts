@@ -1,8 +1,9 @@
 import { eq } from 'drizzle-orm';
 import { db } from '../clients/postgres';
 import { Users } from '../db/schema';
-import bcrypt from 'bcrypt';
-import { EmailService } from '../utilities/sendEmail';
+import { EmailService } from '../utilities/emailService';
+import { hashString } from '../utilities/hashString';
+import { generateEncodedString } from '../utilities/generateEncodedString';
 
 interface TUserRegisterBody {
     fullName: string;
@@ -11,7 +12,7 @@ interface TUserRegisterBody {
     passwordConfirm: string;
 }
 
-const { HASH_SALT_ROUNDS } = process.env;
+const { JWT_AUTH_SECRET_KEY, JWT_AUTH_EXPIRES_IN, API_URL } = process.env;
 export class UserService {
     constructor() {}
 
@@ -29,19 +30,26 @@ export class UserService {
         if (password !== passwordConfirm)
             throw Error('Passwords not matching!');
 
-        const hashedPassword = this.hashUserPassword(password);
+        const hashedPassword = hashString(password);
 
-        await db.insert(Users).values({
-            fullName: fullName,
-            email: email,
-            password: hashedPassword,
-        });
+        const userId = await db
+            .insert(Users)
+            .values({
+                fullName: fullName,
+                email: email,
+                password: hashedPassword,
+            })
+            .returning({ userId: Users.id });
+
+        const encodedString = await generateEncodedString(
+            { userId },
+            JWT_AUTH_SECRET_KEY!,
+            JWT_AUTH_EXPIRES_IN!,
+        );
 
         const emailService = new EmailService(fullName, email);
-        await emailService.sendRegisterEmail('members.rexven.com');
+        await emailService.sendRegisterEmail(
+            `${API_URL}/api/users/verify/${encodedString}`,
+        );
     }
-
-    private hashUserPassword = (password: string): string => {
-        return bcrypt.hashSync(password, +HASH_SALT_ROUNDS!);
-    };
 }

@@ -1,4 +1,5 @@
-import nodemailer from 'nodemailer';
+import sgMail from '@sendgrid/mail';
+sgMail.setApiKey(process.env.SENDGRID_API_KEY!);
 
 export class EmailService {
     fullName: string;
@@ -10,8 +11,9 @@ export class EmailService {
 
     async sendRegisterEmail(verifyUrl: string) {
         await this.sendEmail(
-            'Registeration',
-            `<h1>Verify link ${verifyUrl}</h1>`,
+            'Registration',
+            `<h1>Verify link </h1>
+            <a href=${verifyUrl}>Verify</a>`,
         );
     }
 
@@ -24,19 +26,7 @@ export class EmailService {
                 html: content,
             };
 
-            const transporter = nodemailer.createTransport({
-                host: 'smtp.sendgrid.net',
-                port: 587,
-                auth: {
-                    user: 'apikey',
-                    pass: process.env.SENDGRID_API_KEY,
-                },
-            });
-
-            transporter
-                .sendMail(options)
-                .then((res) => console.log(res))
-                .catch((err) => console.log(err));
+            await sgMail.send(options);
         } catch (err: any) {
             console.log(err);
         }
