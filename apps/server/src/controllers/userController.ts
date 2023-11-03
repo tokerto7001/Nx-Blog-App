@@ -15,3 +15,19 @@ export const register: RequestHandler = async (req, res) => {
         return res.status(400).send({ status: 'fail', message: err.message });
     }
 };
+
+export const verifyUser: RequestHandler = async (req, res) => {
+    try {
+        const data = await userService.verifyUser(req.params.verificationCode);
+        // navigate user to the login page if there is
+        return res
+            .status(200)
+            .send({
+                status: 'success',
+                data,
+                message: 'User verification is done successfully.',
+            });
+    } catch (err: any) {
+        return res.status(400).send({ status: 'fail', message: err.message });
+    }
+};

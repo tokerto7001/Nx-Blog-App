@@ -4,6 +4,7 @@ import { Users } from '../db/schema';
 import { EmailService } from '../utilities/emailService';
 import { hashString } from '../utilities/hashString';
 import { generateEncodedString } from '../utilities/generateEncodedString';
+import { verifyEncodedString } from '../utilities/verifyEncodedString';
 
 interface TUserRegisterBody {
     fullName: string;
@@ -16,7 +17,7 @@ const { JWT_AUTH_SECRET_KEY, JWT_AUTH_EXPIRES_IN, API_URL } = process.env;
 export class UserService {
     constructor() {}
 
-    async register(requestBody: TUserRegisterBody) {
+    async register(requestBody: TUserRegisterBody): Promise<void> {
         const { fullName, email, password, passwordConfirm } = requestBody;
 
         const existingUser = await db
@@ -42,7 +43,7 @@ export class UserService {
             .returning({ userId: Users.id });
 
         const encodedString = await generateEncodedString(
-            user,
+            { userId: user[0].userId },
             JWT_AUTH_SECRET_KEY!,
             JWT_AUTH_EXPIRES_IN!,
         );
@@ -51,5 +52,24 @@ export class UserService {
         await emailService.sendRegisterEmail(
             `${API_URL}/api/users/verify/${encodedString}`,
         );
+    }
+
+    async verifyUser(verificationCode: string) {
+        if (!verificationCode) throw Error('No code provided!');
+
+        const { userId } = await verifyEncodedString(verificationCode);
+        if (!userId) throw new Error('No user found!');
+
+        const user = await db
+            .select()
+            .from(Users)
+            .where(eq(Users.id, userId))
+            .limit(1);
+        if (!user.length) throw Error('No user found!');
+
+        await db
+            .update(Users)
+            .set({ isVerified: true })
+            .where(eq(Users.id, userId));
     }
 }
