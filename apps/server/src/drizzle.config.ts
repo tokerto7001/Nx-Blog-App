@@ -1,6 +1,6 @@
 import type { Config } from 'drizzle-kit';
 import dotenv from 'dotenv';
-import { determineEnvPath, TNodeEnv } from './src/utilities/determineEnvPath';
+import { determineEnvPath, TNodeEnv } from './utilities/determineEnvPath';
 
 dotenv.config({ path: determineEnvPath(process.env.NODE_ENV as TNodeEnv) });
 const { DB_HOST, DB_PORT, DB_USER, DB_PASSWORD, DB_NAME } = process.env;

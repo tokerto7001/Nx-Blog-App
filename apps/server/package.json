@@ -12,12 +12,12 @@
         "lint": "eslint .",
         "lint:fix": "eslint . --fix",
         "typecheck": "tsc --noEmit --esModuleInterop",
-        "migration:generate-dev": "cross-env NODE_ENV=development drizzle-kit generate:pg",
-        "migration:push-dev": "cross-env NODE_ENV=development drizzle-kit push:pg",
-        "migration:generate-production": "cross-env NODE_ENV=production drizzle-kit generate:pg",
-        "migration:push-production": "cross-env NODE_ENV=production drizzle-kit push:pg",
-        "migration:generate-test": "cross-env NODE_ENV=test drizzle-kit generate:pg",
-        "migration:push-test": "cross-env NODE_ENV=test drizzle-kit push:pg"
+        "migration:generate-dev": "cross-env NODE_ENV=development drizzle-kit generate:pg --config ./src/drizzle.config.ts",
+        "migration:push-dev": "cross-env NODE_ENV=development drizzle-kit push:pg --config ./src/drizzle.config.ts",
+        "migration:generate-production": "cross-env NODE_ENV=production drizzle-kit generate:pg --config ./src/drizzle.config.ts",
+        "migration:push-production": "cross-env NODE_ENV=production drizzle-kit push:pg --config ./src/drizzle.config.ts",
+        "migration:generate-test": "cross-env NODE_ENV=test drizzle-kit generate:pg --config ./src/drizzle.config.ts",
+        "migration:push-test": "cross-env NODE_ENV=test drizzle-kit push:pg --config ./src/drizzle.config.ts"
     },
     "keywords": [],
     "author": "",
