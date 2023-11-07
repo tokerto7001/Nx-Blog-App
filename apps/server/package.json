@@ -13,10 +13,13 @@
         "lint:fix": "eslint . --fix",
         "typecheck": "tsc --noEmit --esModuleInterop",
         "migration:generate-dev": "cross-env NODE_ENV=development drizzle-kit generate:pg --config ./src/drizzle.config.ts",
+        "migration:migrate-dev": "cross-env NODE_ENV=development ts-node --transpile-only ./src/db/migrate.ts",
         "migration:push-dev": "cross-env NODE_ENV=development drizzle-kit push:pg --config ./src/drizzle.config.ts",
         "migration:generate-production": "cross-env NODE_ENV=production drizzle-kit generate:pg --config ./src/drizzle.config.ts",
+        "migration:migrate-production": "cross-env NODE_ENV=production ts-node --transpile-only ./src/db/migrate.ts",
         "migration:push-production": "cross-env NODE_ENV=production drizzle-kit push:pg --config ./src/drizzle.config.ts",
         "migration:generate-test": "cross-env NODE_ENV=test drizzle-kit generate:pg --config ./src/drizzle.config.ts",
+        "migration:migrate-test": "cross-env NODE_ENV=test ts-node --transpile-only ./src/db/migrate.ts",
         "migration:push-test": "cross-env NODE_ENV=test drizzle-kit push:pg --config ./src/drizzle.config.ts"
     },
     "keywords": [],
