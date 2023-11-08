@@ -48,10 +48,12 @@ export class UserService {
             JWT_AUTH_EXPIRES_IN!,
         );
 
-        const emailService = new EmailService(fullName, email);
-        await emailService.sendRegisterEmail(
-            `${API_URL}/api/users/verify/${encodedString}`,
-        );
+        if (process.env.NODE_ENV !== 'test') {
+            const emailService = new EmailService(fullName, email);
+            await emailService.sendRegisterEmail(
+                `${API_URL}/api/users/verify/${encodedString}`,
+            );
+        }
     }
 
     async verifyUser(verificationCode: string) {

@@ -1,3 +1,4 @@
+import { client } from '../clients/postgres';
 import { httpServer } from '../index';
 import request from 'supertest';
 
@@ -14,4 +15,5 @@ describe('Basic tests for the initial route', () => {
 
 afterAll(async () => {
     httpServer.close();
+    client.end();
 });
