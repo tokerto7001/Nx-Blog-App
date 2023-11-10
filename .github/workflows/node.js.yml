@@ -27,7 +27,7 @@ jobs:
       run: npm run lint
     - name: Create .env file
       run: |
-        echo "${{ secrets.TEST_ENV }}" > .env.test
+        echo "${{ secrets.TEST_ENV }}" > ./apps/server/.env.test
     - name: Run Migration
       run: npm run migrate
     - name: Run Tests
