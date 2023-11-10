@@ -9,7 +9,8 @@
     "format": "npx nx format server & npx nx format client",
     "lint": "npx nx lint server & npx nx lint client",
     "test": "npx nx test server & npx nx component:headless client",
-    "typecheck": "npx nx typecheck server & npx nx typecheck client"
+    "typecheck": "npx nx typecheck server & npx nx typecheck client",
+    "migrate": "npx nx migration:migrate-test server"
   },
   "private": true,
   "devDependencies": {

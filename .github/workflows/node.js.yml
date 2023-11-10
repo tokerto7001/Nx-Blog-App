@@ -25,6 +25,8 @@ jobs:
       run: npm run typecheck
     - name: Run Linting Rules
       run: npm run lint
+    - name: Run Migration
+      run: npm run migrate
     - name: Run Tests
       run: npm run test
     - name: Build
