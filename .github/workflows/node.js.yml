@@ -25,6 +25,8 @@ jobs:
       run: npm run typecheck
     - name: Run Linting Rules
       run: npm run lint
+    - name: Create .env file
+      run: echo "${{ secrets.TEST_ENV }}" > .env.test
     - name: Run Migration
       run: npm run migrate
     - name: Run Tests
