@@ -16,6 +16,7 @@ jobs:
         env:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: '    '
+          POSTGRES_DB: test
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
@@ -39,6 +40,8 @@ jobs:
       run: npm run typecheck
     - name: Run Linting Rules
       run: npm run lint
+    - name: Create testdb
+      run: echo sudo su - postgres
     - name: Create .env file
       run: |
         echo "${{ secrets.TEST_ENV }}" > ./apps/server/.env.test
