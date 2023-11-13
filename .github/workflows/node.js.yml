@@ -44,7 +44,7 @@ jobs:
       run: |
         echo "${{ secrets.TEST_ENV }}" > ./apps/server/.env.test
     - name: Run Migration
-      run: npm run migrate
+      run: npm run migrate-test
     - name: Run Tests
       run: npm run test
     - name: Build
