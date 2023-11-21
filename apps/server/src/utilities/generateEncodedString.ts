@@ -5,10 +5,10 @@ export const generateEncodedString = async (
     object: object,
     secretKey: string,
     expiresIn: string,
-): Promise<any> => {
-    return await promisify<object, Secret, SignOptions>(jwt.sign)(
+): Promise<string> => {
+    return (await promisify<object, Secret, SignOptions>(jwt.sign)(
         object,
         secretKey,
         { expiresIn },
-    );
+    )) as unknown as string;
 };

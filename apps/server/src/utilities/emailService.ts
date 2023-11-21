@@ -27,8 +27,8 @@ export class EmailService {
             };
 
             await sgMail.send(options);
-        } catch (err: any) {
-            console.log(err);
+        } catch (err: unknown) {
+            if (err instanceof Error) console.log(err);
         }
     }
 }

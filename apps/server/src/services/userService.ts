@@ -31,7 +31,7 @@ export class UserService {
         if (password !== passwordConfirm)
             throw Error('Passwords not matching!');
 
-        const hashedPassword = hashString(password);
+        const hashedPassword = await hashString(password);
 
         const user = await db
             .insert(Users)
@@ -59,7 +59,9 @@ export class UserService {
     async verifyUser(verificationCode: string) {
         if (!verificationCode) throw Error('No code provided!');
 
-        const { userId } = await verifyEncodedString(verificationCode);
+        const { userId } = await verifyEncodedString<{ userId: number }>(
+            verificationCode,
+        );
         if (!userId) throw new Error('No user found!');
 
         const user = await db

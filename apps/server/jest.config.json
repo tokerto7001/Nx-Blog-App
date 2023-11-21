@@ -1,6 +1,5 @@
 {
     "preset": "ts-jest",
     "testEnvironment": "node",
-    "forceExit": true,
-    "maxWorkers": 1
+    "forceExit": true
 }

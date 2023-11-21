@@ -23,29 +23,35 @@ const userRegisterObject: IUserRegisterObject = {
     passwordConfirm: '12345678',
 };
 
+beforeAll(async () => {
+    await db.delete(Users);
+});
+
 describe('Authentication process test', () => {
     describe('Register', () => {
         it('should returns 400 if required properties are not provided', async () => {
-            await server
-                .post('/api/users/register')
-                .send({
-                    fullName: userRegisterObject.fullName,
-                    email: userRegisterObject.email,
-                })
-                .expect(400);
+            const response = await server.post('/api/users/register').send({
+                fullName: userRegisterObject.fullName,
+                email: userRegisterObject.email,
+            });
+
+            expect(response.status).toBe(400);
         });
 
         it('should successfully register the user', async () => {
-            await server
+            const response = await server
                 .post('/api/users/register')
-                .send(userRegisterObject)
-                .expect(201);
+                .send(userRegisterObject);
+
+            expect(response.status).toBe(201);
         });
     });
 
     describe('Verify User', () => {
         it('should return 400 if verification code is not provided properly', async () => {
-            await server.get('/api/users/verify/test').send().expect(400);
+            const response = await server.get('/api/users/verify/test').send();
+
+            expect(response.status).toBe(400);
         });
 
         it('should verify the user', async () => {
@@ -60,16 +66,13 @@ describe('Authentication process test', () => {
                 JWT_AUTH_EXPIRES_IN,
             );
 
-            await server
+            const response = await server
                 .get(`/api/users/verify/${verificationCode}`)
-                .send()
-                .expect(200);
+                .send();
+
+            expect(response.status).toBe(200);
         });
     });
-});
-
-beforeAll(async () => {
-    await db.delete(Users);
 });
 
 afterAll(async () => {

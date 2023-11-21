@@ -6,10 +6,14 @@ const server = request(httpServer);
 
 describe('Basic tests for the initial route', () => {
     it('should return 200 statusCode', async () => {
-        await server.post('/').send({ test: true }).expect(200);
+        const response = await server.post('/').send({ test: true });
+
+        expect(response.status).toBe(200);
     });
     it('should return 400 statusCode', async () => {
-        await server.post('/').send({ test: false }).expect(400);
+        const response = await server.post('/').send({ test: false });
+
+        expect(response.status).toBe(400);
     });
 });
 

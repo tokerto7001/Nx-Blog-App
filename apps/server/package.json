@@ -4,7 +4,7 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "test": "cross-env NODE_ENV=test jest",
+        "test": "cross-env NODE_ENV=test jest --runInBand",
         "dev": "cross-env NODE_ENV=development nodemon src/index.ts",
         "start": "cross-env NODE_ENV=production nodemon dist/index.js",
         "build": "tsc",
