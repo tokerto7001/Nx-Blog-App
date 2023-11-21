@@ -1,17 +1,20 @@
-import { z } from 'zod';
+import { ZodError, z } from 'zod';
 import { Request, Response, NextFunction } from 'express';
 
-export const validateRequestBody = (requestBodyDto: z.ZodRawShape) => {
+export const validateRequestBody = (requestBodyDto: z.ZodSchema) => {
     return (req: Request, res: Response, next: NextFunction) => {
         try {
-            const schema = z.object(requestBodyDto);
-            schema.parse(req.body);
+            requestBodyDto.parse(req.body);
             return next();
         } catch (err: unknown) {
-            if (err instanceof Error) {
+            if (err instanceof ZodError) {
+                const issues = err.issues;
+                const errorMessage = issues
+                    .map((issue) => issue.message)
+                    .join(', ');
                 return res
                     .status(400)
-                    .send({ status: 'fail', message: JSON.parse(err.message) });
+                    .send({ status: 'fail', message: errorMessage });
             }
         }
     };
