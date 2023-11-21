@@ -18,7 +18,7 @@ export class UserService {
     constructor() {}
 
     async register(requestBody: TUserRegisterBody): Promise<void> {
-        const { fullName, email, password, passwordConfirm } = requestBody;
+        const { fullName, email, password } = requestBody;
 
         const existingUser = await db
             .select()
@@ -27,9 +27,6 @@ export class UserService {
             .limit(1);
         if (existingUser.length)
             throw Error('This user is already registered!');
-
-        if (password !== passwordConfirm)
-            throw Error('Passwords not matching!');
 
         const hashedPassword = await hashString(password);
 
