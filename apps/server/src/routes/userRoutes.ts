@@ -1,12 +1,17 @@
 import { Router } from 'express';
 import { register, verifyUser } from '../controllers/userController';
 import { validateRequestBody } from '../middlewares/validateRequestBody';
-import { userValidatior } from '../validators/userValidators';
+import { registerDto, userVerifyDto } from '../dtos/userDtos';
+import { validateRequestParams } from '../middlewares/validateRequestParams';
 
 const router = Router();
 
 router
-    .post('/register', validateRequestBody(userValidatior), register)
-    .get('/verify/:verificationCode', verifyUser);
+    .post('/register', validateRequestBody(registerDto), register)
+    .get(
+        '/verify/:verificationCode',
+        validateRequestParams(userVerifyDto),
+        verifyUser,
+    );
 
 export { router as userRoutes };

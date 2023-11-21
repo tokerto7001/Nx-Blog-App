@@ -5,13 +5,10 @@ import { EmailService } from '../utilities/emailService';
 import { hashString } from '../utilities/hashString';
 import { generateEncodedString } from '../utilities/generateEncodedString';
 import { verifyEncodedString } from '../utilities/verifyEncodedString';
+import { z } from 'zod';
+import { registerDto } from '../dtos/userDtos';
 
-interface TUserRegisterBody {
-    fullName: string;
-    email: string;
-    password: string;
-    passwordConfirm: string;
-}
+type TUserRegisterBody = z.infer<typeof registerDto>;
 
 const { JWT_AUTH_SECRET_KEY, JWT_AUTH_EXPIRES_IN, API_URL } = process.env;
 export class UserService {
@@ -53,9 +50,7 @@ export class UserService {
         }
     }
 
-    async verifyUser(verificationCode: string) {
-        if (!verificationCode) throw Error('No code provided!');
-
+    async verifyUser(verificationCode: string): Promise<void> {
         const { userId } = await verifyEncodedString<{ userId: number }>(
             verificationCode,
         );

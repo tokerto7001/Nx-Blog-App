@@ -1,12 +1,13 @@
-import { ZodError, z } from 'zod';
 import { Request, Response, NextFunction } from 'express';
+import { ZodError, z } from 'zod';
 
-export const validateRequestBody = (requestBodyDto: z.ZodSchema) => {
+export const validateRequestParams = (requestQueryDto: z.ZodSchema) => {
     return (req: Request, res: Response, next: NextFunction) => {
         try {
-            requestBodyDto.parse(req.body);
+            requestQueryDto.parse(req.params);
             return next();
         } catch (err: unknown) {
+            console.log(err);
             if (err instanceof ZodError) {
                 const issues = err.issues;
                 const errorMessage = issues

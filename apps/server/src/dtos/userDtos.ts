@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-export const userValidatior: z.ZodSchema = z
+export const registerDto: z.ZodSchema = z
     .object({
         fullName: z
             .string({
@@ -39,3 +39,10 @@ export const userValidatior: z.ZodSchema = z
         message: "Passwords don't match",
         path: ['passwordConfirm'],
     });
+
+export const userVerifyDto: z.ZodSchema = z.object({
+    verificationCode: z.string({
+        required_error: 'verification url is required',
+        invalid_type_error: 'verification url must be string',
+    }),
+});
