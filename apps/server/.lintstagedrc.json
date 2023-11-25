@@ -1,6 +1,6 @@
 {
     "*.ts": [
-        "tsc --noEmit --esModuleInterop",
+        "tsc --noEmit --esModuleInterop --skipLibCheck",
         "prettier --write",
         "eslint --fix"
     ],

@@ -4,25 +4,40 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "test": "cross-env NODE_ENV=test jest --detectOpenHandles",
+        "test": "cross-env NODE_ENV=test jest --runInBand",
         "dev": "cross-env NODE_ENV=development nodemon src/index.ts",
         "start": "cross-env NODE_ENV=production nodemon dist/index.js",
         "build": "tsc",
         "format": "prettier --write .",
         "lint": "eslint .",
         "lint:fix": "eslint . --fix",
-        "typecheck": "tsc --noEmit --esModuleInterop"
+        "typecheck": "tsc --noEmit --esModuleInterop",
+        "migration:generate-dev": "cross-env NODE_ENV=development drizzle-kit generate:pg --config ./src/drizzle.config.ts",
+        "migration:migrate-dev": "cross-env NODE_ENV=development ts-node --transpile-only ./src/db/migrate.ts",
+        "migration:push-dev": "cross-env NODE_ENV=development drizzle-kit push:pg --config ./src/drizzle.config.ts",
+        "migration:generate-production": "cross-env NODE_ENV=production drizzle-kit generate:pg --config ./src/drizzle.config.ts",
+        "migration:migrate-production": "cross-env NODE_ENV=production ts-node --transpile-only ./src/db/migrate.ts",
+        "migration:push-production": "cross-env NODE_ENV=production drizzle-kit push:pg --config ./src/drizzle.config.ts",
+        "migration:generate-test": "cross-env NODE_ENV=test drizzle-kit generate:pg --config ./src/drizzle.config.ts",
+        "migration:migrate-test": "cross-env NODE_ENV=test ts-node --transpile-only ./src/db/migrate.ts",
+        "migration:push-test": "cross-env NODE_ENV=test drizzle-kit push:pg --config ./src/drizzle.config.ts"
     },
     "keywords": [],
     "author": "",
     "license": "ISC",
     "devDependencies": {
+        "@types/bcrypt": "^5.0.1",
+        "@types/cors": "^2.8.15",
         "@types/express": "^4.17.17",
         "@types/jest": "^29.5.5",
+        "@types/jsonwebtoken": "^9.0.4",
+        "@types/morgan": "^1.9.7",
         "@types/node": "^20.6.2",
+        "@types/pg": "^8.10.5",
         "@types/supertest": "^2.0.13",
         "@typescript-eslint/eslint-plugin": "^6.7.2",
         "@typescript-eslint/parser": "^6.7.2",
+        "drizzle-kit": "^0.19.13",
         "eslint": "^8.49.0",
         "jest": "^29.7.0",
         "nodemon": "^3.0.1",
@@ -32,8 +47,16 @@
         "typescript": "^5.2.2"
     },
     "dependencies": {
+        "@sendgrid/mail": "^7.7.0",
+        "bcrypt": "^5.1.1",
+        "cors": "^2.8.5",
         "cross-env": "^7.0.3",
         "dotenv": "^16.3.1",
-        "express": "^4.18.2"
+        "drizzle-orm": "^0.28.6",
+        "express": "^4.18.2",
+        "jsonwebtoken": "^9.0.2",
+        "morgan": "^1.10.0",
+        "pg": "^8.11.3",
+        "zod": "^3.22.4"
     }
 }

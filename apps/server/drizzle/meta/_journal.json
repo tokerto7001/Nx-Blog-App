@@ -1,0 +1,27 @@
+{
+    "version": "5",
+    "dialect": "pg",
+    "entries": [
+        {
+            "idx": 0,
+            "version": "5",
+            "when": 1699365017343,
+            "tag": "0000_hesitant_tenebrous",
+            "breakpoints": true
+        },
+        {
+            "idx": 1,
+            "version": "5",
+            "when": 1699366793382,
+            "tag": "0001_cold_alice",
+            "breakpoints": true
+        },
+        {
+            "idx": 2,
+            "version": "5",
+            "when": 1699440319165,
+            "tag": "0002_fancy_legion",
+            "breakpoints": true
+        }
+    ]
+}

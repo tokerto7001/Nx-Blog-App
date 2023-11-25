@@ -4,18 +4,24 @@
   "license": "MIT",
   "scripts": {
     "dev": "npx nx dev server & npx nx dev client",
+    "dev-server": "npx nx dev server",
     "prepare": "husky install",
     "build": "npx nx build server & npx nx build client",
     "format": "npx nx format server & npx nx format client",
     "lint": "npx nx lint server & npx nx lint client",
     "test": "npx nx test server & npx nx component:headless client",
-    "typecheck": "npx nx typecheck server & npx nx typecheck client"
+    "typecheck": "npx nx typecheck server & npx nx typecheck client",
+    "migrate-test": "npx nx migration:migrate-test server",
+    "generate-test": "npx nx migration:generate-test server",
+    "migrate-dev": "npx nx migration:migrate-dev server",
+    "generate-dev": "npx nx migration:generate-dev server"
   },
   "private": true,
   "devDependencies": {
     "@commitlint/cli": "^17.7.1",
     "@commitlint/config-conventional": "^17.7.0",
     "@nx/js": "16.8.1",
+    "@types/nodemailer": "^6.4.13",
     "husky": "^8.0.0",
     "lint-staged": "^14.0.1",
     "nx": "16.8.1"
